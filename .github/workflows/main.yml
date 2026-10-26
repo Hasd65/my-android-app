@@ -19,17 +19,12 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - uses: android-actions/setup-android@v3
-
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.11.1'
 
-      - name: Install SDK components
-        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
-
       - name: Build both apps
-        run: gradle --no-daemon :phone:assembleDebug :watch:assembleDebug
+        run: ./gradlew assembleDebug || gradle --no-daemon :phone:assembleDebug :watch:assembleDebug
 
       - name: Upload phone APK
         uses: actions/upload-artifact@v4
