@@ -1,0 +1,1 @@
+# Не используется: minifyEnabled = false.
